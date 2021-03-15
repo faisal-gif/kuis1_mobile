@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'Result.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -12,7 +14,7 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
-  List<String> listItemLaki = [
+  List<String> listItem = [
     "Senin",
     "Selasa",
     "Rabu",
@@ -21,7 +23,7 @@ class MyAppState extends State<MyApp> {
     "Sabtu",
     "Minggu"
   ];
-  List<String> listWetonLaki = [
+  List<String> listWeton = [
     "Legi",
     "Pahing",
     "Pon",
@@ -30,22 +32,6 @@ class MyAppState extends State<MyApp> {
   ];
   String _newValueLaki = "Senin";
   String _newWetonLaki = "Legi";
-  List<String> listItemPerem = [
-    "Senin",
-    "Selasa",
-    "Rabu",
-    "Kamis",
-    "Jumat",
-    "Sabtu",
-    "Minggu"
-  ];
-  List<String> listWetonPerem = [
-    "Legi",
-    "Pahing",
-    "Pon",
-    "Wage",
-    "Kliwon",
-  ];
   List<int> listPegat = [1,9,10,18,19,27,28,36];
   List<int> listRatu = [2,11,20,29];
   List<int> listJodoh = [3,12,21,30];
@@ -53,6 +39,8 @@ class MyAppState extends State<MyApp> {
   List<int> listTinari = [5,14,23,32];
   List<int> listPadu = [6,15,24,33];
   List<int> listSujanan = [7,16,25,34];
+  List<int> listPesthi = [8,17,26,35];
+  
   String _hasil=" ";
   String _keterangan = " ";
   String _newValuePerem = "Senin";
@@ -240,6 +228,26 @@ void perhitunganCocok(){
   _hasil =  "Ratu";
   _keterangan = "Bisa dibilang pasangan tersebut memang sudah jodohnya. Dihargai dan disegani oleh tetangga dan lingkungan sekitar. Saking harmonisnya, bahkan banyak orang yang iri akan keharmonisannya dalam membina rumah tangga.";
   }
+  else if(listSujanan.contains(_hitungCocok)){
+_hasil = "Sujanan";
+_keterangan = "Dalam berumah tangga, pasangan SUJANAN akan sering mengalami pertengkaran dan masalah perselingkuhan. Bisa itu dari pihak laki-laki maupun perempuan yang memulai perselingkuhan tersebut.";
+  }
+  else if(listTinari.contains(_hitungCocok)){
+    _hasil ="Tinari";
+    _keterangan = "Pasangan TINARI akan menemukan kebahagiaan. Dalam mencari rezeki diberikan kemudahan dan nggak sampai hidup kekurangan. Selain itu, hidupnya juga sering mendapat keberuntungan.";
+  }
+  else if(listTopo.contains(_hitungCocok)){
+    _hasil = "Topo";
+    _keterangan = "Dalam membina rumah tangga, pasangan TOPO akan sering mengalami kesusahan di awal musim karena masih saling memahami tapi akan bahagia pada akhirnya. Masalah yang dihadapi bisa saja soal ekonomi dan lainnya. Nah, saat sudah memiliki anak dan cukup lama berumah tangga, akhirnya akan hidup sukses dan bahagia.";
+  }
+   else if(listPadu.contains(_hitungCocok)){
+    _hasil = "Padu";
+    _keterangan = "Dalam berumah tangga, pasangan PADU akan sering mengalami pertengkaran. Tapi Bela, meskipun sering bertengkar, nggak sampai cerai. Masalah pertengkaran tersebut bahkan bisa dipicu dari hal-hal yang sifatnya cukup sepele.";
+  }
+   else if(listPesthi.contains(_hitungCocok)){
+    _hasil = "Pesthi";
+    _keterangan = "Dalam berumah tangga, pasangan PESTHI akan rukun, tenteram, damai sampai tua. Meskipun ada masalah apapun nggak akan sampai merusak keharmonisan keluarga.";
+  }
 }
   // This widget is the root of your application.
   @override
@@ -272,7 +280,7 @@ void perhitunganCocok(){
                       Container(
                         margin: EdgeInsets.only(top: 10),
                         child: DropdownButton<String>(
-                          items: listItemLaki.map((String value) {
+                          items: listItem.map((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
                               child: Text(value),
@@ -290,7 +298,7 @@ void perhitunganCocok(){
                       Container(
                         margin: EdgeInsets.fromLTRB(20, 10, 0, 0),
                         child: DropdownButton<String>(
-                          items: listWetonLaki.map((String value) {
+                          items: listWeton.map((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
                               child: Text(value),
@@ -316,7 +324,7 @@ void perhitunganCocok(){
                       Container(
                         margin: EdgeInsets.only(top: 10),
                         child: DropdownButton<String>(
-                          items: listItemPerem.map((String value) {
+                          items: listItem.map((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
                               child: Text(value),
@@ -334,7 +342,7 @@ void perhitunganCocok(){
                       Container(
                         margin: EdgeInsets.fromLTRB(20, 10, 0, 0),
                         child: DropdownButton<String>(
-                          items: listWetonPerem.map((String value) {
+                          items: listWeton.map((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
                               child: Text(value),
@@ -353,36 +361,7 @@ void perhitunganCocok(){
                   ]),
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 0, 50, 0),
-                        child: Text("Hasil Kecocokan"),
-                      ),
-                       Container(
-                        margin: EdgeInsets.fromLTRB(0, 10, 50, 0),
-                        child: Text(
-                          "$_hasil",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
-                        ),
-                      ),
-                      Container(
-                        width: 300,
-                        margin: EdgeInsets.fromLTRB(0, 10, 50, 0),
-                        child: Text(
-                          "$_keterangan",
-                          style: TextStyle(
-                              fontSize: 10),
-                        ),
-                      )
-                    ],
-                  ),
-                ],
-              ),
+              Result(hasil: _hasil, keterangan: _keterangan),
               Container(
                 width: double.infinity,
                 child: new RaisedButton(
